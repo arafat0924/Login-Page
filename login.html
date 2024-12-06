@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="vue.js" defer></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Logo Section -->
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+
+        <!-- Login Container -->
+        <div class="login-container">
+            <h2 class="welcome-text">{{ translations[currentLanguage].welcome }}</h2> <!-- Welcome Text -->
+
+            <form class="login-form" novalidate @submit.prevent="validateForm">
+                <!-- Username Field -->
+                <label for="username" class="username-label">{{ translations[currentLanguage].username }}</label>
+                <input type="text" id="username" v-model="username">
+                
+                <!-- Password Field -->
+                <label for="password" class="password-label">{{ translations[currentLanguage].password }}</label>
+                <input type="password" id="password" v-model="password">
+
+                <!-- Validation Message -->
+                <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+                
+                <!-- Options for Checkbox and Forgot Password Link -->
+                <div class="options">
+                    <label>
+                        <input type="checkbox" name="keep-logged-in"> 
+                        <span class="keep-logged-in-text">{{ translations[currentLanguage].keepLoggedIn }}</span>
+                    </label>
+                    <a href="#" class="forgot-password">{{ translations[currentLanguage].forgotPassword }}</a>
+                </div>
+                
+                <!-- Login Button -->
+                <button type="submit" class="login-button">{{ translations[currentLanguage].login }}</button>
+            </form>
+
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <label for="language">Language:</label>
+                <select id="language" v-model="currentLanguage">
+                    <option value="en">English</option>
+                    <option value="zh" selected>中文 (Chinese)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
